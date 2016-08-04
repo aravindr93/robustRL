@@ -1,0 +1,1 @@
+{'job_id':0, 'hidden_sizes':(32,32), 'max_kl':0.01, 'niter':201, 'num_cpu':4, 'save_interim':True, 'save_freq':10, 'evaluate_test':True, 'plot_error_bar':True}
