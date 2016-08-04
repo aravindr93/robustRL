@@ -45,7 +45,7 @@ def train_agent(job_id,
         policy = pickle.load(open(restart_file, 'rb'))
     agent = TRPO(e, policy, baseline, max_kl)
 
-    def hopper_traj_schedule(iter, curr_return):
+    def traj_schedule(iter, curr_return):
         N = (50 if curr_return > 1500 else 50+(1500-curr_return)*350.0/1500)
         return int(np.ceil(N))
 
@@ -62,7 +62,7 @@ def train_agent(job_id,
             best_policy = copy.deepcopy(policy)
             best_perf = train_curve[iter-1, 0]
 
-        num_traj = hopper_traj_schedule(iter, train_curve[iter-1, 0])
+        num_traj = traj_schedule(iter, train_curve[iter-1, 0])
         cum_num_ep += num_traj
 
         train_curve[iter] = agent.train_step(num_traj, e.horizon,
