@@ -1,0 +1,5 @@
+nohup: ignoring input and appending output to 'nohup.out'
+/home/aravind/anaconda2/envs/rllab/lib/python2.7/site-packages/theano/tensor/signal/downsample.py:6: UserWarning: downsample module has been moved to the theano.tensor.signal.pool module.
+  "downsample module has been moved to the theano.tensor.signal.pool module.")
+/home/aravind/Programs/rllab/rllab/optimizers/conjugate_gradient_optimizer.py:146: VisibleDeprecationWarning: using a non-integer number instead of an integer will result in an error in the future
+  n_samples, n_samples * self._subsample_factor, replace=False)
