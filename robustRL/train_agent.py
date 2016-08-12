@@ -24,6 +24,9 @@ def train_agent(job_id,
     niter = 250,
     gamma = 0.995,
     num_cpu = 'max',
+    min_traj = 50,
+    max_traj = 400,
+    rwd_switch = 1500,
     restart_file = None,
     save_interim = True,
     save_freq = 25,
@@ -49,8 +52,10 @@ def train_agent(job_id,
 
     def traj_schedule(iter, curr_return):
         if iter == 0 and restart_file != None:
-            return 50
-        N = (50 if curr_return > 1500 else 50+(1500-curr_return)*350.0/1500)
+            return min_traj
+        _slp = float(max_traj-min_traj); _slp = _slp/rwd_switch
+        N = (min_traj if curr_return > rwd_switch \
+        	else min_traj + (rwd_switch-curr_return)*_slp )
         return int(np.ceil(N))
 
     # =======================================================================
