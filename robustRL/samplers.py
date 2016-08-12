@@ -40,8 +40,12 @@ def sample_paths(N, policy, baseline, env_mode='train', T=1e6, gamma=1, env=None
         rewards=[]
         agent_infos = []
         env_infos = []
+        qpos = []
+        qvel = []
 
         o = env.reset()
+        qpos.append(env.env.model.data.qpos.reshape(-1))
+        qvel.append(env.env.model.data.qvel.reshape(-1))
         done = False
         t = 0
 
@@ -53,6 +57,8 @@ def sample_paths(N, policy, baseline, env_mode='train', T=1e6, gamma=1, env=None
             rewards.append(r)
             agent_infos.append(agent_info)
             env_infos.append(env_info)
+            qpos.append(env.env.model.data.qpos.reshape(-1))
+            qvel.append(env.env.model.data.qvel.reshape(-1))
             o = next_o
             t += 1
 
@@ -63,6 +69,8 @@ def sample_paths(N, policy, baseline, env_mode='train', T=1e6, gamma=1, env=None
             rewards=tensor_utils.stack_tensor_list(rewards),
             agent_infos=tensor_utils.stack_tensor_dict_list(agent_infos),
             env_infos=tensor_utils.stack_tensor_dict_list(env_infos),
+            qpos=tensor_utils.stack_tensor_list(qpos),
+            qvel=tensor_utils.stack_tensor_list(qvel),
         )
 
         # compute returns using the path
