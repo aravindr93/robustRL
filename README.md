@@ -14,6 +14,7 @@ This project builds on top of OpenAI gym and rllab. You need to set up those fir
 
 ### Things you need to impliment:
 - First copy the gym_env.py file from `base code` folder to `/path/to/rllab/rllab/envs/` and replace existing file
+- Include the robustRL package into your pythonpath. `PYTHONPATH="/path/to/robustRL:$PYTHONPATH"` or change the `~/.bashrc` file.
 - Ideally, you shouldn't have to touch any file other than `job_data.txt` and `MDP_funcs.py`
 - Inside `MDP_funcs.py`, you need to write a function to generate the environment of your choice. Make sure this is compatible with OpenAI gym and that you have registered this environment with the gym modules. Also remember to add a function call within the `generate_environment` function in `MDP_funcs.py`
 - **Note:** I recommend that you don't use a GPU for this, unless training convolutional layers. Modify the `.theanorc` file in your home directory to remove the GPU device set by default. Also uncomment the `theano.sandbox.cuda.unuse()` command in `algos.py` if you get a CUDA error.
