@@ -16,12 +16,14 @@ from MDP_funcs import *
 # =======================================================================================
 # Functions for sampling paths
 
-def sample_paths(N, policy, baseline, env_mode='train', T=1e6, gamma=1):
-    
+def sample_paths(N, policy, baseline, env_mode='train', T=1e6, gamma=1, env=None):
+    # Directly specifying env works only when sampling in series
+
     # set random seed (needed for multiprocessing)
     np.random.seed()
 
-    env = get_environment(env_mode)
+    if env == None:
+        env = get_environment(env_mode)
     T = min(T, env.horizon)
     T = max(1, T)  
     # sometimes, env is not initialized correctly in multiprocessing
