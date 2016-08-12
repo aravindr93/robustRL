@@ -24,6 +24,8 @@ def train_agent(job_id,
     niter = 250,
     gamma = 0.995,
     num_cpu = 'max',
+    env_mode = 'train',
+    normalized_env = False,
     min_traj = 50,
     max_traj = 400,
     rwd_switch = 1500,
@@ -41,12 +43,12 @@ def train_agent(job_id,
     result_file = ( open('results.txt', 'w') if restart_file == None \
         else open('results.txt', 'a') )
 
-    e = get_environment('train')
+    e = get_environment(env_mode)
     policy = GaussianMLPPolicy(env_spec=e.spec, hidden_sizes=hidden_sizes)
     baseline = LinearFeatureBaseline(env_spec=e.spec)
     if restart_file != None:
         policy = pickle.load(open(restart_file, 'rb'))
-        baseline_paths = sample_paths(20, policy, baseline)
+        baseline_paths = sample_paths(20, policy, baseline, env_mode, normalized_env=normalized_env)
         baseline.fit(baseline_paths)
     agent = TRPO(e, policy, baseline, max_kl)
 
@@ -75,7 +77,7 @@ def train_agent(job_id,
         cum_num_ep += num_traj
 
         train_curve[iter] = agent.train_step(num_traj, e.horizon,
-            gamma, env_mode='train', num_cpu=num_cpu)
+            gamma, env_mode=env_mode, num_cpu=num_cpu, normalized_env=normalized_env)
 
         if evaluate_test:
             test_curve[iter] = policy_evaluation(policy, 'test', num_episodes=10)

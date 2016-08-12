@@ -16,7 +16,14 @@ from MDP_funcs import *
 # =======================================================================================
 # Functions for sampling paths
 
-def sample_paths(N, policy, baseline, env_mode='train', T=1e6, gamma=1, env=None):
+def sample_paths(N, 
+    policy, 
+    baseline, 
+    env_mode='train', 
+    T=1e6, 
+    gamma=1, 
+    normalized_env=False,
+    env=None):
     # Directly specifying env works only when sampling in series
 
     # set random seed (needed for multiprocessing)
@@ -44,8 +51,12 @@ def sample_paths(N, policy, baseline, env_mode='train', T=1e6, gamma=1, env=None
         qvel = []
 
         o = env.reset()
-        qpos.append(env.env.model.data.qpos.reshape(-1))
-        qvel.append(env.env.model.data.qvel.reshape(-1))
+        if normalized_env:
+            qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
+            qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
+        else:
+            qpos.append(env.env.model.data.qpos.reshape(-1))
+            qvel.append(env.env.model.data.qvel.reshape(-1))
         done = False
         t = 0
 
@@ -57,8 +68,12 @@ def sample_paths(N, policy, baseline, env_mode='train', T=1e6, gamma=1, env=None
             rewards.append(r)
             agent_infos.append(agent_info)
             env_infos.append(env_info)
-            qpos.append(env.env.model.data.qpos.reshape(-1))
-            qvel.append(env.env.model.data.qvel.reshape(-1))
+            if normalized_env:
+                qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
+                qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
+            else:
+                qpos.append(env.env.model.data.qpos.reshape(-1))
+                qvel.append(env.env.model.data.qvel.reshape(-1))
             o = next_o
             t += 1
 
@@ -115,17 +130,18 @@ def sample_paths_parallel(N,
     T=1e6, gamma=1,
     num_cpu=None,
     max_process_time=60,
-    max_timeouts=5):
+    max_timeouts=5,
+    normalized_env=False):
     
     if num_cpu == None or num_cpu == 'max':
         num_cpu = mp.cpu_count()
     elif num_cpu == 1:
-        return sample_paths(N, policy, baseline, evn_mode, T, gamma)
+        return sample_paths(N, policy, baseline, evn_mode, T, gamma, normalized_env)
     else:
         num_cpu = min(mp.cpu_count(), num_cpu)       
 
     paths_per_cpu = int(np.ceil(N/num_cpu))
-    args_list = [paths_per_cpu, policy, baseline, env_mode, T, gamma]
+    args_list = [paths_per_cpu, policy, baseline, env_mode, T, gamma, normalized_env]
 
     results = _try_multiprocess(args_list, num_cpu, max_process_time, max_timeouts)
 

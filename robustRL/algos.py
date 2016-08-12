@@ -110,14 +110,15 @@ class TRPO:
         return eval_statistics
 
 
-    def train_step(self, N, T, gamma, env_mode='train', num_cpu='max'):
+    def train_step(self, N, T, gamma, env_mode='train', num_cpu='max', normalized_env=False):
         """    N = number of trajectories
                T = horizon
                env_mode = can be 'train', 'test' or something else. 
                           You need to write the appropriate function in MDP_funcs
         """
         
-        paths = sample_paths_parallel(N, self.policy, self.baseline, env_mode, T, gamma, num_cpu=num_cpu)
+        paths = sample_paths_parallel(N, self.policy, self.baseline, 
+            env_mode, T, gamma, num_cpu=num_cpu, normalized_env=normalized_env)
 
         eval_statistics = self.train_from_paths(paths)
         eval_statistics.append(N)
