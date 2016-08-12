@@ -43,9 +43,13 @@ def train_agent(job_id,
     baseline = LinearFeatureBaseline(env_spec=e.spec)
     if restart_file != None:
         policy = pickle.load(open(restart_file, 'rb'))
+        baseline_paths = sample_paths(20, policy, baseline)
+        baseline.fit(baseline_paths)
     agent = TRPO(e, policy, baseline, max_kl)
 
     def traj_schedule(iter, curr_return):
+        if iter == 0 and restart_file != None:
+            return 50
         N = (50 if curr_return > 1500 else 50+(1500-curr_return)*350.0/1500)
         return int(np.ceil(N))
 
