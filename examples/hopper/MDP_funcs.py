@@ -6,25 +6,28 @@ import gym
 import numpy as np
 from rllab.envs.gym_env import GymEnv
 
+# ===================================================================
+# Functions used in training and testing phase
 
 def make_train_MDP():
-    return _make_standard_MDP()
+    return _standard_hopper()
 
 
 def make_test_MDP():
-    return _make_heavy_MDP()
+    return _heavy_hopper()
 
 
 def make_custom_MDP():
-    return _draw_random_MDP()
+    return _ensemble_hopper()
 
+# ===================================================================
+# Local functions to create envs
 
-def _make_standard_MDP():
-    e = GymEnv('Hopper-v1')
-    return e
+def _standard_hopper():
+    return GymEnv('Hopper-v1')
 
-
-def _make_heavy_MDP():
+def _heavy_hopper():
+    # Make the torso heavy
     e = GymEnv("Hopper-v1")
     bm = np.array(e.env.model.body_mass)
     gs = np.array(e.env.model.geom_size)
@@ -32,12 +35,20 @@ def _make_heavy_MDP():
     e.env.model.body_mass = bm; e.env.model.geom_size = gs;
     return e
 
+def _ensemble_hopper():
+    return GymEnv("UncertainHopper-v0")
 
-def _make_random_MDP():
-    e = GymEnv("UncertainHopper-v0")
+def _standard_walker():
+    return GymEnv('Walker2d-v1')
 
+def _heavy_walker():
+    # Make the torso heavy
+    e = GymEnv('Walker2d-v1')
+    bm = np.array(e.env.model.body_mass)
+    gs = np.array(e.env.model.geom_size)
+    bm[1] = 7; gs[1][0] = 0.1;
+    e.env.model.body_mass = bm; e.env.model.geom_size = gs;
     return e
-
 
 # =======================================================================================
 # Generate environment corresponding to the given mode

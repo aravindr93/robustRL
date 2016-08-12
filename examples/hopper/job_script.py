@@ -12,10 +12,10 @@ import sys
 sys.dont_write_bytecode = True
 
 
-from algos import *
-from samplers import *
-from train_agent import *
-from utils import *
+from robustRL.algos import *
+from robustRL.samplers import *
+from robustRL.train_agent import *
+from robustRL.utils import *
 np.random.seed(10)
 rllab_set_seed(10)
 
