@@ -8,6 +8,11 @@
 
 from __future__ import print_function
 
+import logging
+logging.disable(logging.CRITICAL)
+import sys
+sys.dont_write_bytecode = True
+
 import numpy as np
 import theano
 #theano.sandbox.cuda.unuse()
@@ -31,7 +36,7 @@ from rllab.misc import ext
 from rllab.misc import tensor_utils
 from rllab.misc.ext import set_seed as rllab_set_seed
 
-from samplers import *
+from robustRL.samplers import *
 
 
 

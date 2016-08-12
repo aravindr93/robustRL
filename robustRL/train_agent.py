@@ -12,9 +12,9 @@ import sys
 sys.dont_write_bytecode = True
 import os
 
-from algos import *
-from samplers import *
-from utils import save_plots_and_data
+from robustRL.algos import *
+from robustRL.samplers import *
+from robustRL.utils import save_plots_and_data
 np.random.seed(10)
 rllab_set_seed(10)
 

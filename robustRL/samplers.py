@@ -11,7 +11,7 @@ import multiprocessing as mp
 from rllab.misc import tensor_utils
 
 from MDP_funcs import *
-
+# above MDP_funs is local copy
 
 # =======================================================================================
 # Functions for sampling paths
