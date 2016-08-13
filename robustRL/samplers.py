@@ -78,6 +78,14 @@ def sample_paths(N,
             t += 1
 
         # make a path dictionary
+        # Also store the path belief and env data used in the trajectory
+        try:
+        	path_belief = env.env.belief
+        except Exception as e:
+        	path_belief = str(e)
+
+        path_model = env.env.model
+
         path = dict(
             observations=tensor_utils.stack_tensor_list(observations),
             actions=tensor_utils.stack_tensor_list(actions),
@@ -86,6 +94,8 @@ def sample_paths(N,
             env_infos=tensor_utils.stack_tensor_dict_list(env_infos),
             qpos=tensor_utils.stack_tensor_list(qpos),
             qvel=tensor_utils.stack_tensor_list(qvel),
+            path_belief=path_belief,
+            path_model=path_model,
         )
 
         # compute returns using the path
