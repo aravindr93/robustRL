@@ -146,8 +146,8 @@ def sample_paths_parallel(N,
     env_mode='train',
     T=1e6, gamma=1,
     num_cpu=None,
-    max_process_time=60,
-    max_timeouts=5,
+    max_process_time=120,
+    max_timeouts=4,
     mujoco_env=True,
     normalized_env=False):
     
