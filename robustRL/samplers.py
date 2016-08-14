@@ -53,12 +53,12 @@ def sample_paths(N,
 
         o = env.reset()
         if mujoco_env == True:
-	        if normalized_env:
-	            qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
-	            qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
-	        else:
-	            qpos.append(env.env.model.data.qpos.reshape(-1))
-	            qvel.append(env.env.model.data.qvel.reshape(-1))
+            if normalized_env:
+                qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
+                qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
+            else:
+                qpos.append(env.env.model.data.qpos.reshape(-1))
+                qvel.append(env.env.model.data.qvel.reshape(-1))
         done = False
         t = 0
 
@@ -71,12 +71,12 @@ def sample_paths(N,
             agent_infos.append(agent_info)
             env_infos.append(env_info)
             if mujoco_env == True:
-	            if normalized_env:
-	                qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
-	                qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
-	            else:
-	                qpos.append(env.env.model.data.qpos.reshape(-1))
-	                qvel.append(env.env.model.data.qvel.reshape(-1))
+                if normalized_env:
+                    qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
+                    qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
+                else:
+                    qpos.append(env.env.model.data.qpos.reshape(-1))
+                    qvel.append(env.env.model.data.qvel.reshape(-1))
             o = next_o
             t += 1
 
