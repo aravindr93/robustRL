@@ -80,11 +80,11 @@ def sample_paths(N,
         # make a path dictionary
         # Also store the path belief and env data used in the trajectory
         try:
-        	path_belief = env.env.belief
+            path_belief = env.env.belief
         except Exception as e:
-        	path_belief = str(e)
+            path_belief = str(e)
 
-        path_model = env.env.model
+        # path_model = env.env
 
         path = dict(
             observations=tensor_utils.stack_tensor_list(observations),
@@ -94,10 +94,12 @@ def sample_paths(N,
             env_infos=tensor_utils.stack_tensor_dict_list(env_infos),
             qpos=tensor_utils.stack_tensor_list(qpos),
             qvel=tensor_utils.stack_tensor_list(qvel),
-            path_belief=path_belief,
-            path_model=path_model,
+            #path_belief=path_belief,
+            #path_model=path_model,
         )
 
+        # TODO: Storing the path model is too space inefficient. Need to find alternative
+        
         # compute returns using the path
         path_baseline = baseline.predict(path)
         advantages = []
