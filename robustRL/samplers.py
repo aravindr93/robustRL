@@ -21,7 +21,8 @@ def sample_paths(N,
     baseline, 
     env_mode='train', 
     T=1e6, 
-    gamma=1, 
+    gamma=1,
+    mujoco_env=True, 
     normalized_env=False,
     env=None):
     # Directly specifying env works only when sampling in series
@@ -51,12 +52,13 @@ def sample_paths(N,
         qvel = []
 
         o = env.reset()
-        if normalized_env:
-            qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
-            qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
-        else:
-            qpos.append(env.env.model.data.qpos.reshape(-1))
-            qvel.append(env.env.model.data.qvel.reshape(-1))
+        if mujoco_env == True:
+	        if normalized_env:
+	            qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
+	            qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
+	        else:
+	            qpos.append(env.env.model.data.qpos.reshape(-1))
+	            qvel.append(env.env.model.data.qvel.reshape(-1))
         done = False
         t = 0
 
@@ -68,23 +70,26 @@ def sample_paths(N,
             rewards.append(r)
             agent_infos.append(agent_info)
             env_infos.append(env_info)
-            if normalized_env:
-                qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
-                qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
-            else:
-                qpos.append(env.env.model.data.qpos.reshape(-1))
-                qvel.append(env.env.model.data.qvel.reshape(-1))
+            if mujoco_env == True:
+	            if normalized_env:
+	                qpos.append(env.wrapped_env.env.model.data.qpos.reshape(-1))
+	                qvel.append(env.wrapped_env.env.model.data.qvel.reshape(-1))
+	            else:
+	                qpos.append(env.env.model.data.qpos.reshape(-1))
+	                qvel.append(env.env.model.data.qvel.reshape(-1))
             o = next_o
             t += 1
 
         # make a path dictionary
         # Also store the path belief and env data used in the trajectory
-        try:
-            path_belief = env.env.belief
-        except Exception as e:
-            path_belief = str(e)
-
+        #try:
+        #    path_belief = env.env.belief
+        #except Exception as e:
+        #    path_belief = str(e)
         # path_model = env.env
+
+        qpos_flat = tensor_utils.stack_tensor_list(qpos)
+        qvel_flat = tensor_utils.stack_tensor_list(qvel)
 
         path = dict(
             observations=tensor_utils.stack_tensor_list(observations),
@@ -92,8 +97,8 @@ def sample_paths(N,
             rewards=tensor_utils.stack_tensor_list(rewards),
             agent_infos=tensor_utils.stack_tensor_dict_list(agent_infos),
             env_infos=tensor_utils.stack_tensor_dict_list(env_infos),
-            qpos=tensor_utils.stack_tensor_list(qpos),
-            qvel=tensor_utils.stack_tensor_list(qvel),
+            qpos=qpos_flat,
+            qvel=qvel_flat,
             #path_belief=path_belief,
             #path_model=path_model,
         )
@@ -143,17 +148,18 @@ def sample_paths_parallel(N,
     num_cpu=None,
     max_process_time=60,
     max_timeouts=5,
+    mujoco_env=True,
     normalized_env=False):
     
     if num_cpu == None or num_cpu == 'max':
         num_cpu = mp.cpu_count()
     elif num_cpu == 1:
-        return sample_paths(N, policy, baseline, evn_mode, T, gamma, normalized_env)
+        return sample_paths(N, policy, baseline, evn_mode, T, gamma, mujoco_env, normalized_env)
     else:
         num_cpu = min(mp.cpu_count(), num_cpu)       
 
     paths_per_cpu = int(np.ceil(N/num_cpu))
-    args_list = [paths_per_cpu, policy, baseline, env_mode, T, gamma, normalized_env]
+    args_list = [paths_per_cpu, policy, baseline, env_mode, T, gamma, mujoco_env, normalized_env]
 
     results = _try_multiprocess(args_list, num_cpu, max_process_time, max_timeouts)
 

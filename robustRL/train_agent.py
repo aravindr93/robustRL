@@ -25,6 +25,7 @@ def train_agent(job_id,
     gamma = 0.995,
     num_cpu = 'max',
     env_mode = 'train',
+    mujoco_env = True,
     normalized_env = False,
     min_traj = 50,
     max_traj = 400,
@@ -66,8 +67,8 @@ def train_agent(job_id,
         else:
             baseline = LinearFeatureBaseline(env_spec=e.spec)
             if pol_restart_file != None:
-                baseline_paths = sample_paths(20, policy, 
-                    baseline, env_mode, normalized_env=normalized_env)
+                baseline_paths = sample_paths(20, policy, baseline, env_mode, 
+                    mujoco_env=mujoco_env, normalized_env=normalized_env)
                 baseline.fit(baseline_paths)
 
     # Create the agent
@@ -99,7 +100,7 @@ def train_agent(job_id,
 
         train_curve[iter] = agent.train_step(num_traj, e.horizon, gamma, 
             env_mode=env_mode, num_cpu=num_cpu, save_paths=save_paths, 
-            idx=iter, normalized_env=normalized_env)
+            idx=iter, mujoco_env=mujoco_env, normalized_env=normalized_env)
 
         if evaluate_test:
             test_curve[iter] = policy_evaluation(policy, 'test', num_episodes=10)
