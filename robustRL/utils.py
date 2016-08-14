@@ -16,6 +16,7 @@ def save_plots_and_data(train_curve,
     test_curve,
     policy,
     best_policy,
+    baseline,
     iter,
     mode = 'intermediate',
     evaluate_test = False,
@@ -35,6 +36,7 @@ def save_plots_and_data(train_curve,
         plt2_file_name = 'train_test_comparison.png'
 
         policy_file = 'final_policy.pickle'
+        baseline_file = 'final_baseline.pickle'
 
     elif mode == 'intermediate':
         with open('train_curve_interim.txt', 'wb') as f:
@@ -50,6 +52,7 @@ def save_plots_and_data(train_curve,
         plt2_file_name = 'train_test_comparison_interim.png'
 
         policy_file = 'policy_%i.pickle' %iter
+        baseline_file = 'baseline_%i.pickle' %iter
 
     else:
         print "ERROR: Choose only intermediate or final for mode"
@@ -92,10 +95,21 @@ def save_plots_and_data(train_curve,
         plt.savefig(plt2_file_name)  
         plt.close()     
 
-    # Save the policies
+    # Save the policies and baseline
     if os.path.isdir('iterations') == False:
         os.mkdir('iterations')
     os.chdir('./iterations/')
     pickle.dump(policy, open(policy_file, 'wb'))
     pickle.dump(best_policy, open('best_policy.pickle', 'wb'))
+    pickle.dump(baseline, open(baseline_file, 'wb'))
+    os.chdir('..')
+
+
+def save_paths(paths, idx=0):
+    # Saves the given paths with name: ./iterations/paths_<idx>.pickle
+    if os.path.isdir('iterations') == False:
+        os.mkdir('iterations')
+    os.chdir('./iterations/')
+    paths_file = 'paths_%i.pickle' %idx
+    pickle.dump(paths, open(paths_file, 'wb'))
     os.chdir('..')
