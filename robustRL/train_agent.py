@@ -29,8 +29,12 @@ def train_agent(job_id,
     min_traj = 50,
     max_traj = 400,
     rwd_switch = 1500,
-    restart_file = None,
+    policy = None,
+    baseline = None,
+    pol_restart_file = None,
+    bas_restart_file = None,
     save_interim = True,
+    save_paths = False,
     save_freq = 25,
     evaluate_test = False,
     plot_error_bar = False):
@@ -40,24 +44,41 @@ def train_agent(job_id,
     if os.path.isdir(dirpath) == False:
         os.mkdir(dirpath) 
     os.chdir(dirpath)
-    result_file = ( open('results.txt', 'w') if restart_file == None \
+    result_file = ( open('results.txt', 'w') if pol_restart_file == None \
         else open('results.txt', 'a') )
 
+    # Make appropriate environment (only for specs, not data)
     e = get_environment(env_mode)
-    policy = GaussianMLPPolicy(env_spec=e.spec, hidden_sizes=hidden_sizes)
-    baseline = LinearFeatureBaseline(env_spec=e.spec)
-    if restart_file != None:
-        policy = pickle.load(open(restart_file, 'rb'))
-        baseline_paths = sample_paths(20, policy, baseline, env_mode, normalized_env=normalized_env)
-        baseline.fit(baseline_paths)
+
+    # Initialize policy and baseline correctly
+    # 1) If policy or baseline is provided directly, they will be used
+    # 2) If restart file provided, initialized from there
+    # 3) If none of above, initialized randomly
+    if policy == None:
+        if pol_restart_file != None:
+            policy = pickle.load(open(pol_restart_file, 'rb'))
+        else:
+            policy = GaussianMLPPolicy(env_spec=e.spec, hidden_sizes=hidden_sizes)
+
+    if baseline == None:
+        if bas_restart_file != None:
+            baseline = pickle.load(open(bas_restart_file, 'rb'))
+        else:
+            baseline = LinearFeatureBaseline(env_spec=e.spec)
+            if pol_restart_file != None:
+                baseline_paths = sample_paths(20, policy, 
+                    baseline, env_mode, normalized_env=normalized_env)
+                baseline.fit(baseline_paths)
+
+    # Create the agent
     agent = TRPO(e, policy, baseline, max_kl)
 
     def traj_schedule(iter, curr_return):
-        if iter == 0 and restart_file != None:
+        if iter == 0 and pol_restart_file != None:
             return min_traj
         _slp = float(max_traj-min_traj); _slp = _slp/rwd_switch
         N = (min_traj if curr_return > rwd_switch \
-        	else min_traj + (rwd_switch-curr_return)*_slp )
+            else min_traj + (rwd_switch-curr_return)*_slp )
         return int(np.ceil(N))
 
     # =======================================================================
@@ -76,16 +97,17 @@ def train_agent(job_id,
         num_traj = traj_schedule(iter, train_curve[iter-1, 0])
         cum_num_ep += num_traj
 
-        train_curve[iter] = agent.train_step(num_traj, e.horizon,
-            gamma, env_mode=env_mode, num_cpu=num_cpu, normalized_env=normalized_env)
+        train_curve[iter] = agent.train_step(num_traj, e.horizon, gamma, 
+            env_mode=env_mode, num_cpu=num_cpu, save_paths=save_paths, 
+            idx=iter, normalized_env=normalized_env)
 
         if evaluate_test:
             test_curve[iter] = policy_evaluation(policy, 'test', num_episodes=10)
 
         # save interim results
         if save_interim == True and iter % save_freq == 0 and iter > 0:
-            save_plots_and_data(train_curve, test_curve, policy, best_policy, iter+1,
-                mode='intermediate', evaluate_test=evaluate_test, 
+            save_plots_and_data(train_curve, test_curve, policy, best_policy, 
+                baseline, iter+1, mode='intermediate', evaluate_test=evaluate_test, 
                 plot_error_bar=plot_error_bar)
 
         # Print results to console
@@ -97,6 +119,6 @@ def train_agent(job_id,
         result_file.write("%3i %4.2f %4.2f %4.2f %3i %6i \n" % (iter, train_curve[iter,0],
             test_curve[iter,0], best_perf, num_traj, cum_num_ep) )
 
-    save_plots_and_data(train_curve, test_curve, policy, best_policy, niter,
+    save_plots_and_data(train_curve, test_curve, policy, best_policy, baseline, niter,
         mode='final', evaluate_test=evaluate_test, plot_error_bar=plot_error_bar)
     result_file.close()
