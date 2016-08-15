@@ -29,6 +29,7 @@ def train_agent(job_id,
     normalized_env = False,
     min_traj = 50,
     max_traj = 400,
+    sub_sample = None,
     rwd_switch = 1500,
     policy = None,
     baseline = None,
@@ -80,10 +81,11 @@ def train_agent(job_id,
         _slp = float(max_traj-min_traj); _slp = _slp/rwd_switch
         N = (min_traj if curr_return > rwd_switch \
             else min_traj + (rwd_switch-curr_return)*_slp )
-        return int(np.ceil(N))
+        return min( int(np.ceil(N)), max_traj )
 
     # =======================================================================
-    train_curve = np.zeros((niter,5))
+    train_curve = (np.zeros((niter,5)) if sub_sample == None \
+        else np.zeros((niter,6)) )
     test_curve = np.zeros((niter,5))
 
     best_policy = copy.deepcopy(policy)
@@ -99,8 +101,8 @@ def train_agent(job_id,
         cum_num_ep += num_traj
 
         train_curve[iter] = agent.train_step(num_traj, e.horizon, gamma, 
-            env_mode=env_mode, num_cpu=num_cpu, save_paths=save_paths, 
-            idx=iter, mujoco_env=mujoco_env, normalized_env=normalized_env)
+            env_mode=env_mode, num_cpu=num_cpu, save_paths=save_paths, idx=iter, 
+            mujoco_env=mujoco_env, normalized_env=normalized_env, sub_sample=sub_sample)
 
         if evaluate_test:
             test_curve[iter] = policy_evaluation(policy, 'test', num_episodes=10)

@@ -116,7 +116,8 @@ class TRPO:
         save_paths=False,
         idx=None,
         mujoco_env=True, 
-        normalized_env=False):
+        normalized_env=False,
+        sub_sample=None):
         """    N = number of trajectories
                T = horizon
                env_mode = can be 'train', 'test' or something else. 
@@ -130,22 +131,32 @@ class TRPO:
         if save_paths == True and idx != None:
             robustRL.utils.save_paths(paths, idx)
 
-        eval_statistics = self.train_from_paths(paths)
+        eval_statistics = self.train_from_paths(paths, sub_sample=sub_sample)
         eval_statistics.append(N)
 
         return eval_statistics
 
 
-    def train_from_paths(self, paths):
+    def train_from_paths(self, paths, sub_sample=None):
         
+        if sub_sample != None:
+        	# Pick subset of paths whose returns are in the sub_sample percentile range
+        	path_returns = [sum(p["rewards"]) for p in paths]
+        	sub_range = [np.percentile(path_returns, sub_sample[i]) for i in range(2)]
+        	# Find paths which satisfy criteria
+        	idx = [i for i,ret in enumerate(path_returns) if sub_range[0]<=ret and ret<=sub_range[1]]
+        	chosen_paths = [paths[i] for i in idx]
+        else:
+        	chosen_paths = paths
+
         self.baseline.fit(paths)
         # concatenate from all the trajectories
-        observations = tensor_utils.concat_tensor_list([path["observations"] for path in paths])
-        actions      = tensor_utils.concat_tensor_list([path["actions"] for path in paths])
-        rewards      = tensor_utils.concat_tensor_list([path["rewards"] for path in paths])
-        advantages   = tensor_utils.concat_tensor_list([path["advantages"] for path in paths])
-        env_infos    = tensor_utils.concat_tensor_dict_list([path["env_infos"] for path in paths])
-        agent_infos  = tensor_utils.concat_tensor_dict_list([path["agent_infos"] for path in paths])
+        observations = tensor_utils.concat_tensor_list([path["observations"] for path in chosen_paths])
+        actions      = tensor_utils.concat_tensor_list([path["actions"] for path in chosen_paths])
+        rewards      = tensor_utils.concat_tensor_list([path["rewards"] for path in chosen_paths])
+        advantages   = tensor_utils.concat_tensor_list([path["advantages"] for path in chosen_paths])
+        env_infos    = tensor_utils.concat_tensor_dict_list([path["env_infos"] for path in chosen_paths])
+        agent_infos  = tensor_utils.concat_tensor_dict_list([path["agent_infos"] for path in chosen_paths])
 
         samples_data = dict(
             observations=observations,
@@ -174,8 +185,12 @@ class TRPO:
         std_return   = np.std(path_returns)
         min_return   = np.amin(path_returns)
         max_return   = np.amax(path_returns)
-        return [mean_return, std_return, min_return, max_return]
 
+        if sub_sample == None:
+            return [mean_return, std_return, min_return, max_return]
+        else:
+            sub_mean = np.mean([sum(p["rewards"]) for p in chosen_paths])
+            return [mean_return, std_return, min_return, max_return, sub_mean]
 
 
 class REINFORCE:
