@@ -183,8 +183,12 @@ class TRPO:
         path_returns = [sum(p["rewards"]) for p in paths]
         mean_return  = np.mean(path_returns)
         std_return   = np.std(path_returns)
-        min_return   = np.amin(path_returns)
-        max_return   = np.amax(path_returns)
+        #min_return   = np.amin(path_returns)
+        #max_return   = np.amax(path_returns)
+
+        # I'm going to use softer version of min and max here
+        min_return   = np.percentile(path_returns, 10)
+        max_return   = np.percentile(path_returns, 90)
 
         if sub_sample == None:
             return [mean_return, std_return, min_return, max_return]
