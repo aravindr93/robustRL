@@ -84,9 +84,10 @@ def train_agent(job_id,
         return min( int(np.ceil(N)), max_traj )
 
     # =======================================================================
-    train_curve = (np.zeros((niter,5)) if sub_sample == None \
-        else np.zeros((niter,6)) )
-    test_curve = np.zeros((niter,5))
+    train_curve = np.zeros((niter,6))
+    test_curve = np.zeros((niter,7))
+
+    percentile_stats = np.zeros((niter, 7))
 
     best_policy = copy.deepcopy(policy)
     best_perf = 0
@@ -100,7 +101,7 @@ def train_agent(job_id,
         num_traj = traj_schedule(iter, train_curve[iter-1, 0])
         cum_num_ep += num_traj
 
-        train_curve[iter] = agent.train_step(num_traj, e.horizon, gamma, 
+        train_curve[iter], percentile_stats[iter] = agent.train_step(num_traj, e.horizon, gamma, 
             env_mode=env_mode, num_cpu=num_cpu, save_paths=save_paths, idx=iter, 
             mujoco_env=mujoco_env, normalized_env=normalized_env, sub_sample=sub_sample)
 
@@ -109,7 +110,7 @@ def train_agent(job_id,
 
         # save interim results
         if save_interim == True and iter % save_freq == 0 and iter > 0:
-            save_plots_and_data(train_curve, test_curve, policy, best_policy, 
+            save_plots_and_data(train_curve, test_curve, percentile_stats, policy, best_policy, 
                 baseline, iter+1, mode='intermediate', evaluate_test=evaluate_test, 
                 plot_error_bar=plot_error_bar)
 
@@ -122,6 +123,6 @@ def train_agent(job_id,
         result_file.write("%3i %4.2f %4.2f %4.2f %3i %6i \n" % (iter, train_curve[iter,0],
             test_curve[iter,0], best_perf, num_traj, cum_num_ep) )
 
-    save_plots_and_data(train_curve, test_curve, policy, best_policy, baseline, niter,
-        mode='final', evaluate_test=evaluate_test, plot_error_bar=plot_error_bar)
+    save_plots_and_data(train_curve, test_curve, percentile_stats, policy, best_policy, 
+        baseline, niter, mode='final', evaluate_test=evaluate_test, plot_error_bar=plot_error_bar)
     result_file.close()

@@ -14,6 +14,7 @@ import os
 
 def save_plots_and_data(train_curve, 
     test_curve,
+    percentile_stats,
     policy,
     best_policy,
     baseline,
@@ -24,11 +25,14 @@ def save_plots_and_data(train_curve,
 
     if mode == 'final':
         with open('train_curve.txt', 'ab') as f:
-            np.savetxt(f, train_curve)
+            np.savetxt(f, train_curve, fmt='%4.3f')
+
+        with open('train_percentile_stats.txt', 'wb') as f:
+            np.savetxt(f, percentile_stats, fmt='%4.3f')
 
         if evaluate_test:
             with open('test_curve.txt', 'ab') as f:
-                np.savetxt(f, test_curve)
+                np.savetxt(f, test_curve, fmt='%4.3f')
             test_curve = np.loadtxt('test_curve.txt')
 
         train_curve = np.loadtxt('train_curve.txt')
@@ -40,11 +44,14 @@ def save_plots_and_data(train_curve,
 
     elif mode == 'intermediate':
         with open('train_curve_interim.txt', 'wb') as f:
-            np.savetxt(f, train_curve[0:iter])
+            np.savetxt(f, train_curve[0:iter], fmt='%4.3f')
 
+        with open('train_percentile_stats.txt', 'wb') as f:
+            np.savetxt(f, percentile_stats[0:iter], fmt='%4.3f')
+        
         if evaluate_test:
             with open('test_curve_interim.txt', 'wb') as f:
-                np.savetxt(f, test_curve[0:iter])
+                np.savetxt(f, test_curve[0:iter], fmt='%4.3f')
         
         train_curve = train_curve[0:iter]
         test_curve = test_curve[0:iter]

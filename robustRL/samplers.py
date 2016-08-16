@@ -228,5 +228,7 @@ def policy_evaluation(policy,
     std_eval  = np.std(ep_returns)
     min_eval  = np.amin(ep_returns)
     max_eval  = np.amax(ep_returns)
+    soft_min  = np.percentile(ep_returns,15)
+    soft_max  = np.percentile(ep_returns,85)
 
-    return (mean_eval, std_eval, min_eval, max_eval, num_episodes)
+    return (mean_eval, std_eval, min_eval, max_eval, soft_min, soft_max, num_episodes)

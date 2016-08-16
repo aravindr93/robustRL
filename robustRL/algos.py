@@ -132,12 +132,12 @@ class TRPO:
             robustRL.utils.save_paths(paths, idx)
 
         eval_statistics = self.train_from_paths(paths, sub_sample=sub_sample)
-        eval_statistics.append(N)
+        eval_statistics[0].append(N)
 
         return eval_statistics
 
 
-    def train_from_paths(self, paths, sub_sample=None):
+    def train_from_paths(self, paths, sub_sample=None, path_percentile=[10,15,33,50,66,85,90]):
         
         if sub_sample != None:
         	# Pick subset of paths whose returns are in the sub_sample percentile range
@@ -183,18 +183,16 @@ class TRPO:
         path_returns = [sum(p["rewards"]) for p in paths]
         mean_return  = np.mean(path_returns)
         std_return   = np.std(path_returns)
-        #min_return   = np.amin(path_returns)
-        #max_return   = np.amax(path_returns)
+        min_return   = np.amin(path_returns)
+        max_return   = np.amax(path_returns)
+        sub_mean     = np.mean([sum(p["rewards"]) for p in chosen_paths])
 
-        # I'm going to use softer version of min and max here
-        min_return   = np.percentile(path_returns, 10)
-        max_return   = np.percentile(path_returns, 90)
+        base_stats = [mean_return, std_return, min_return, max_return, sub_mean]
+        percetile_stats = []
+        for p in path_percentile:
+            percetile_stats.append(np.percentile(path_returns, p))
 
-        if sub_sample == None:
-            return [mean_return, std_return, min_return, max_return]
-        else:
-            sub_mean = np.mean([sum(p["rewards"]) for p in chosen_paths])
-            return [mean_return, std_return, min_return, max_return, sub_mean]
+        return [base_stats, percetile_stats]
 
 
 class REINFORCE:
