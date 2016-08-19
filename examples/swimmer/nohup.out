@@ -1,0 +1,927 @@
+[32musing seed 10[0m
+[32musing seed 10[0m
+ ============================================================
+Started New Job :  0
+Job specifications : 
+{'save_freq': 10, 'evaluate_test': False, 'max_traj': 200, 'rwd_switch': 150, 'plot_error_bar': True, 'save_interim': True, 'min_traj': 50, 'num_cpu': 'max', 'niter': 101, 'job_id': 0, 'max_kl': 0.01, 'hidden_sizes': (64, 64)}
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[35m=: Compiling function f_loss[0m
+[35mdone in 0.574 seconds[0m
+[35m=: Compiling function f_grad[0m
+[35mdone in 0.769 seconds[0m
+[35m=: Compiling function f_Hx_plain[0m
+[35mdone in 1.997 seconds[0m
+[35m=: Compiling function f_loss_constraint[0m
+[35mdone in 0.569 seconds[0m
+Iter | Train MDP | Test MDP | Best (on Train) | num_traj | Episodes so far 
+
+[ Fri Aug 19 17:20:39 2016 ] 0 -19.9110795688 0.0 0 200 200
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:21:44 2016 ] 1 -6.40019321869 0.0 0 200 400
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:22:56 2016 ] 2 11.8699182131 0.0 0 200 600
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:23:58 2016 ] 3 28.0753369548 0.0 11.8699182131 189 789
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:24:55 2016 ] 4 30.9692991114 0.0 28.0753369548 172 961
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:25:55 2016 ] 5 31.2210713695 0.0 30.9692991114 170 1131
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:26:49 2016 ] 6 32.2505812169 0.0 31.2210713695 169 1300
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:27:45 2016 ] 7 32.1233022226 0.0 32.2505812169 168 1468
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:28:39 2016 ] 8 35.1113593762 0.0 32.2505812169 168 1636
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:29:32 2016 ] 9 41.0437047464 0.0 35.1113593762 165 1801
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:30:27 2016 ] 10 41.43064359 0.0 41.0437047464 159 1960
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:31:16 2016 ] 11 43.1765799397 0.0 41.43064359 159 2119
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:32:15 2016 ] 12 47.9691111677 0.0 43.1765799397 157 2276
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:33:05 2016 ] 13 48.1177959241 0.0 47.9691111677 153 2429
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:33:56 2016 ] 14 51.2139917854 0.0 48.1177959241 152 2581
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:34:47 2016 ] 15 52.9430366966 0.0 51.2139917854 149 2730
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:35:36 2016 ] 16 52.3933200386 0.0 52.9430366966 148 2878
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:36:24 2016 ] 17 54.9287226718 0.0 52.9430366966 148 3026
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:37:13 2016 ] 18 54.8674236502 0.0 54.9287226718 146 3172
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:38:01 2016 ] 19 58.7269900787 0.0 54.9287226718 146 3318
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:38:49 2016 ] 20 62.1431300386 0.0 58.7269900787 142 3460
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:39:36 2016 ] 21 62.1425092703 0.0 62.1431300386 138 3598
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:40:21 2016 ] 22 66.2471608843 0.0 62.1431300386 138 3736
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:41:10 2016 ] 23 67.3756724929 0.0 66.2471608843 134 3870
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:41:56 2016 ] 24 68.159368755 0.0 67.3756724929 133 4003
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:42:38 2016 ] 25 69.1344358252 0.0 68.159368755 132 4135
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:43:19 2016 ] 26 73.575147618 0.0 69.1344358252 131 4266
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:43:53 2016 ] 27 81.0183103798 0.0 73.575147618 127 4393
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:44:25 2016 ] 28 85.5043037335 0.0 81.0183103798 119 4512
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:44:58 2016 ] 29 96.6423189386 0.0 85.5043037335 115 4627
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:45:29 2016 ] 30 96.9195492177 0.0 96.6423189386 104 4731
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:46:03 2016 ] 31 98.2654953907 0.0 96.9195492177 104 4835
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:46:36 2016 ] 32 111.184131399 0.0 98.2654953907 102 4937
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:47:07 2016 ] 33 111.937648029 0.0 111.184131399 89 5026
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:47:34 2016 ] 34 116.739359135 0.0 111.937648029 89 5115
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:47:59 2016 ] 35 119.059983561 0.0 116.739359135 84 5199
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:48:22 2016 ] 36 119.576637818 0.0 119.059983561 81 5280
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:48:50 2016 ] 37 125.485059404 0.0 119.576637818 81 5361
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:49:17 2016 ] 38 124.742250927 0.0 125.485059404 75 5436
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:49:41 2016 ] 39 125.325031337 0.0 125.485059404 76 5512
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:50:04 2016 ] 40 128.190399414 0.0 125.485059404 75 5587
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:50:26 2016 ] 41 132.631175307 0.0 128.190399414 72 5659
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:50:46 2016 ] 42 135.378173333 0.0 132.631175307 68 5727
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:51:07 2016 ] 43 137.192921349 0.0 135.378173333 65 5792
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:51:24 2016 ] 44 136.761887562 0.0 137.192921349 63 5855
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:51:45 2016 ] 45 139.170132692 0.0 137.192921349 64 5919
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:52:03 2016 ] 46 139.617243048 0.0 139.170132692 61 5980
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:52:21 2016 ] 47 145.93866835 0.0 139.617243048 61 6041
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:52:36 2016 ] 48 148.272208734 0.0 145.93866835 55 6096
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:52:51 2016 ] 49 151.726176362 0.0 148.272208734 52 6148
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:53:05 2016 ] 50 147.671403556 0.0 151.726176362 50 6198
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:53:20 2016 ] 51 157.423550674 0.0 151.726176362 53 6251
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:53:34 2016 ] 52 155.701760891 0.0 157.423550674 50 6301
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:53:48 2016 ] 53 154.908235449 0.0 157.423550674 50 6351
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:54:06 2016 ] 54 153.884630719 0.0 157.423550674 50 6401
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:54:21 2016 ] 55 154.488406212 0.0 157.423550674 50 6451
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:54:35 2016 ] 56 164.456804326 0.0 157.423550674 50 6501
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:54:50 2016 ] 57 159.200246057 0.0 164.456804326 50 6551
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:55:06 2016 ] 58 161.980883824 0.0 164.456804326 50 6601
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:55:20 2016 ] 59 169.523410948 0.0 164.456804326 50 6651
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:55:36 2016 ] 60 166.026285145 0.0 169.523410948 50 6701
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:55:51 2016 ] 61 169.828357269 0.0 169.523410948 50 6751
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:56:05 2016 ] 62 175.672454812 0.0 169.828357269 50 6801
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:56:21 2016 ] 63 168.069987282 0.0 175.672454812 50 6851
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:56:38 2016 ] 64 174.918099478 0.0 175.672454812 50 6901
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:56:53 2016 ] 65 157.690517924 0.0 175.672454812 50 6951
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:57:08 2016 ] 66 174.410414853 0.0 175.672454812 50 7001
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:57:26 2016 ] 67 169.92475209 0.0 175.672454812 50 7051
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:57:44 2016 ] 68 173.086443916 0.0 175.672454812 50 7101
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:58:00 2016 ] 69 196.031621069 0.0 175.672454812 50 7151
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:58:17 2016 ] 70 180.461769025 0.0 196.031621069 50 7201
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:58:34 2016 ] 71 181.849372647 0.0 196.031621069 50 7251
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:58:50 2016 ] 72 181.239590121 0.0 196.031621069 50 7301
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:59:09 2016 ] 73 190.052136115 0.0 196.031621069 50 7351
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:59:28 2016 ] 74 189.643339653 0.0 196.031621069 50 7401
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 17:59:48 2016 ] 75 187.936023361 0.0 196.031621069 50 7451
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:00:06 2016 ] 76 187.364821522 0.0 196.031621069 50 7501
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:00:23 2016 ] 77 204.108531862 0.0 196.031621069 50 7551
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:00:39 2016 ] 78 198.43543146 0.0 204.108531862 50 7601
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:00:55 2016 ] 79 199.43389568 0.0 204.108531862 50 7651
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:01:11 2016 ] 80 210.147869528 0.0 204.108531862 50 7701
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:01:28 2016 ] 81 198.51131089 0.0 210.147869528 50 7751
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:01:44 2016 ] 82 191.942986221 0.0 210.147869528 50 7801
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:02:00 2016 ] 83 194.162379139 0.0 210.147869528 50 7851
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:02:17 2016 ] 84 191.591704279 0.0 210.147869528 50 7901
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:02:34 2016 ] 85 190.818610267 0.0 210.147869528 50 7951
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:02:50 2016 ] 86 212.4325288 0.0 210.147869528 50 8001
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:03:06 2016 ] 87 203.883378782 0.0 212.4325288 50 8051
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:03:22 2016 ] 88 192.944233875 0.0 212.4325288 50 8101
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:03:38 2016 ] 89 218.885462874 0.0 212.4325288 50 8151
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:03:55 2016 ] 90 205.934683035 0.0 218.885462874 50 8201
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:04:12 2016 ] 91 197.338931815 0.0 218.885462874 50 8251
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:04:28 2016 ] 92 186.939978257 0.0 218.885462874 50 8301
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:04:44 2016 ] 93 191.584269158 0.0 218.885462874 50 8351
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:05:00 2016 ] 94 197.753701523 0.0 218.885462874 50 8401
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:05:17 2016 ] 95 205.519228832 0.0 218.885462874 50 8451
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:05:33 2016 ] 96 231.110629205 0.0 218.885462874 50 8501
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:05:49 2016 ] 97 230.5286813 0.0 231.110629205 50 8551
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:06:07 2016 ] 98 246.85809846 0.0 231.110629205 50 8601
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:06:23 2016 ] 99 236.253982894 0.0 246.85809846 50 8651
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+####### Worker started #######
+====== Worker finished ======
+[ Fri Aug 19 18:06:39 2016 ] 100 241.126833549 0.0 246.85809846 50 8701
+Job took time =  2826.42132211
+Total time taken =  2826.42136502
