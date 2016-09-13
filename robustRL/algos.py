@@ -117,15 +117,21 @@ class TRPO:
         idx=None,
         mujoco_env=True, 
         normalized_env=False,
-        sub_sample=None):
+        sub_sample=None,
+        train_env=None):
         """    N = number of trajectories
                T = horizon
                env_mode = can be 'train', 'test' or something else. 
                           You need to write the appropriate function in MDP_funcs
         """
         
-        paths = sample_paths_parallel(N, self.policy, self.baseline, env_mode, 
-            T, gamma, num_cpu=num_cpu, mujoco_env=mujoco_env, normalized_env=normalized_env)
+        
+        if train_env == None:
+            paths = sample_paths_parallel(N, self.policy, self.baseline, env_mode, 
+                T, gamma, num_cpu=num_cpu, mujoco_env=mujoco_env, normalized_env=normalized_env)
+        else:
+            paths = sample_paths(N, self.policy, self.baseline, env=train_env, T=T, gamma=gamma,
+                mujoco_env=mujoco_env, normalized_env=normalized_env)
 
         # save the paths used to make the policy update
         if save_paths == True and idx != None:
@@ -259,15 +265,17 @@ class REINFORCE:
         return eval_statistics
         
 
-    def train_step(self, N, T, gamma, env_mode='train'):
+    def train_step(self, N, T, gamma, env_mode='train', train_env=None):
         """    N = number of trajectories
                T = horizon
                env_mode = can be 'train', 'test' or something else. 
                           You need to write the appropriate function in MDP_funcs
         """
         
-        paths = sample_paths_parallel(N, T, gamma, self.policy, self.baseline, env, num_cpu='max')
-
+        if train_env == None:
+            paths = sample_paths_parallel(N, T, gamma, self.policy, self.baseline, env, num_cpu='max')
+        else:
+            paths = sample_paths(N, T, gamma, self.policy, self.baseline, train_env)
         eval_statistics = self.train_from_paths(paths)
 
         return eval_statistics
