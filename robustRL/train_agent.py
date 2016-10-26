@@ -84,14 +84,14 @@ def train_agent(job_id,
         return min( int(np.ceil(N)), max_traj )
 
     # =======================================================================
-    train_curve = np.zeros((niter,6))
+    best_policy = copy.deepcopy(policy)
+    best_perf = -1e8
+    cum_num_ep = 0
+
+    train_curve = best_perf*np.ones((niter,6))
     test_curve = np.zeros((niter,7))
 
-    percentile_stats = np.zeros((niter, 7))
-
-    best_policy = copy.deepcopy(policy)
-    best_perf = 0
-    cum_num_ep = 0
+    percentile_stats = best_perf*np.ones((niter, 7))
 
     for iter in range(niter):
         if train_curve[iter-1, 0] > best_perf:
@@ -116,10 +116,10 @@ def train_agent(job_id,
 
         # Print results to console
         if iter == 0:
-            print "Iter | Train MDP | Test MDP | Best (on Train) | num_traj | Episodes so far \n"
+            print("Iter | Train MDP | Test MDP | Best (on Train) | num_traj | Episodes so far \n")
             result_file.write(" Iter | Train MDP | Test MDP | Best (on Train) | Episodes so far \n")
-        print "[", timer.asctime( timer.localtime(timer.time()) ), "]", iter, \
-            train_curve[iter,0], test_curve[iter,0], best_perf, num_traj, cum_num_ep
+        print("[", timer.asctime( timer.localtime(timer.time()) ), "]", iter, \
+            train_curve[iter,0], test_curve[iter,0], best_perf, num_traj, cum_num_ep)
         result_file.write("%3i %4.2f %4.2f %4.2f %3i %6i \n" % (iter, train_curve[iter,0],
             test_curve[iter,0], best_perf, num_traj, cum_num_ep) )
 

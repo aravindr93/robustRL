@@ -37,7 +37,7 @@ def sample_paths(N,
     # sometimes, env is not initialized correctly in multiprocessing
     # this is just a sanity check and step size should essentially be zero.
 
-    print "####### Worker started #######"
+    print("####### Worker started #######")
 
     paths = []
 
@@ -110,7 +110,7 @@ def sample_paths(N,
         advantages = []
         returns = []
         return_so_far = 0
-        for t in xrange(len(rewards) - 1, -1, -1):
+        for t in range(len(rewards) - 1, -1, -1):
             return_so_far = rewards[t] + gamma * return_so_far
             returns.append(return_so_far)
             advantage = return_so_far - path_baseline[t]
@@ -129,7 +129,7 @@ def sample_paths(N,
         paths.append(path)
 
     #print "Env body_mass : ", env.env.model.body_mass[1]
-    print "====== Worker finished ======"
+    print("====== Worker finished ======")
 
     return paths
 
@@ -184,8 +184,8 @@ def _try_multiprocess(args_list, num_cpu, max_process_time, max_timeouts):
     try:
         results = [p.get(timeout=max_process_time) for p in parallel_runs]
     except Exception as e:
-        print str(e)
-        print "Timeout Error raised... Trying again"
+        print(str(e))
+        print("Timeout Error raised... Trying again")
         pool.close()
         pool.terminate()
         pool.join()        

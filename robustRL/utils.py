@@ -62,7 +62,7 @@ def save_plots_and_data(train_curve,
         baseline_file = 'baseline_%i.pickle' %iter
 
     else:
-        print "ERROR: Choose only intermediate or final for mode"
+        print("ERROR: Choose only intermediate or final for mode")
 
 
     #print train_curve, test_curve

@@ -29,10 +29,10 @@ if __name__ == '__main__':
     t1 = timer.time()
 
     for job in job_set:
-        print " ============================================================"
-        print "Started New Job : ", job['job_id']
-        print "Job specifications : \n", job
+        print(" ============================================================")
+        print("Started New Job : ", job['job_id'])
+        print("Job specifications : \n", job)
         train_agent(**job)
 
     t2 = timer.time()
-    print "Total time taken = ", t2-t1
+    print("Total time taken = ", t2-t1)
